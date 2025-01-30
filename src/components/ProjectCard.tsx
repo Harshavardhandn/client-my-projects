@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Project } from "@/lib/types";
 import { Calendar, DollarSign, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,11 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const navigate = useNavigate();
+
+  const handleViewFreelancers = () => {
+    navigate(`/project/${project.id}/freelancers`);
+  };
 
   return (
     <Card className="w-full transition-all duration-300 hover:shadow-lg">
@@ -63,13 +69,22 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             </div>
           )}
 
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            {isExpanded ? "Show Less" : "View Details"}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? "Show Less" : "View Details"}
+            </Button>
+            <Button
+              variant="default"
+              className="flex-1"
+              onClick={handleViewFreelancers}
+            >
+              View Freelancers
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>

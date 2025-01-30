@@ -9,3 +9,15 @@ export interface Project {
   clientRating: number;
   clientFeedback?: string;
 }
+
+export interface FreelancerProfile {
+  id: string;
+  name: string;
+  avatar: string;
+  hourlyRate: number;
+  skills: string[];
+  rating: number;
+  completedProjects: number;
+  bidAmount: number;
+  proposalText: string;
+}
